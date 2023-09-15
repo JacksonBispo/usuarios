@@ -1,10 +1,10 @@
 package com.empmanager.usuarios.usecases;
 
-import com.empmanager.exception.UserNotFoundException;
+import com.empmanager.dto.EnderecoDTO;
 import com.empmanager.dto.UsuarioDTO;
+import com.empmanager.exception.UserNotFoundException;
 import com.empmanager.repository.UserRepository;
 import com.empmanager.usecases.GetUser;
-import com.empmanager.usuarios.domain.Endereco;
 import com.empmanager.usuarios.domain.Usuario;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.math.BigDecimal;
 import java.util.Optional;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class GetUserTest {
@@ -30,18 +31,12 @@ public class GetUserTest {
     @Test
     void shouldOneUserTest() {
         Long userId = 1L;
-        var usuarioDTO = new UsuarioDTO(
-                userId, "Jackson Bispo ",
-                "Desenvolvedor Java pleno",
-                new BigDecimal("14.000"),
-                "991556628",
-                "Av Ernesto Igel",
-                "307",
-                "bloco 3",
-                "SP", "SP");
-        var endereco = new Endereco("Av Ernesto Igel", "307", "bloco 3", "SP", "SP");
+        var endereco = new EnderecoDTO("Av Ernesto Igel", "307", "bloco 3", "SP", "SP");
+        var userDTO = new UsuarioDTO(null, "Jackson", "Desenvolvedor Java", new BigDecimal("14.000"), "991556628",endereco);
+        var usuario = new Usuario(userDTO);
 
-        var mockUser = new Usuario(1L, "Jackson Bispo", "Desenvolvedor Java pleno", new BigDecimal("14.000"), "991556628", endereco);
+        var mockUser = new Usuario(userDTO);
+        mockUser.setId(userId);
         when(userRepository.findById(userId)).thenReturn(Optional.of(mockUser));
         Usuario result = getUser.execute(userId).get();
 

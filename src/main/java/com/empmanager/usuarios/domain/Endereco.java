@@ -1,6 +1,7 @@
 package com.empmanager.usuarios.domain;
 
-import jakarta.persistence.*;
+import com.empmanager.dto.EnderecoDTO;
+import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class Endereco {
@@ -19,12 +20,13 @@ public class Endereco {
     public Endereco() {
     }
 
-    public Endereco(String logradouro, String numero, String complemento, String cidade, String estado) {
-        this.logradouro = logradouro;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.cidade = cidade;
-        this.estado = estado;
+    public Endereco(EnderecoDTO enderecoDTO){
+        this.logradouro = enderecoDTO.logradouro();
+        this.numero = enderecoDTO.numero();
+        this.complemento = enderecoDTO.complemento();
+        this.cidade = enderecoDTO.cidade();
+        this.estado = enderecoDTO.estado();
+
     }
 
 

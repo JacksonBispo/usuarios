@@ -1,5 +1,6 @@
 package com.empmanager.usuarios.domain;
 
+import com.empmanager.dto.UsuarioDTO;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -24,13 +25,12 @@ public class Usuario {
 
 
     public Usuario(){}
-    public Usuario(Long id, String name, String designacao, BigDecimal salario, String telefone, Endereco endereco) {
-        this.id = id;
-        this.name = name;
-        this.designacao = designacao;
-        this.salario = salario;
-        this.telefone = telefone;
-        this.endereco = endereco;
+    public Usuario(UsuarioDTO usuarioDTO){
+        this.name = usuarioDTO.name();
+        this.designacao = usuarioDTO.designacao();
+        this.salario = usuarioDTO.salario();
+        this.endereco = new Endereco(usuarioDTO.enderecoDTO());
+
     }
 
     public Long getId() {

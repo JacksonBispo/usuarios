@@ -20,11 +20,11 @@ public class UpdateUser {
         var user = getUser.execute(usuarioDTO.id());
 
             var endereco = new Endereco();
-            endereco.setLogradouro(usuarioDTO.logradouro() != null ? usuarioDTO.logradouro() : user.get().getEndereco().getLogradouro());
-            endereco.setComplemento(usuarioDTO.complemento() != null ? usuarioDTO.complemento() : user.get().getEndereco().getComplemento());
-            endereco.setNumero(usuarioDTO.numero() != null ? usuarioDTO.numero() : user.get().getEndereco().getNumero());
-            endereco.setCidade(usuarioDTO.cidade() != null ? usuarioDTO.cidade() : user.get().getEndereco().getCidade());
-            endereco.setEstado(usuarioDTO.estado() != null ? usuarioDTO.estado() : user.get().getEndereco().getEstado());
+            endereco.setLogradouro(usuarioDTO.enderecoDTO().logradouro() != null ? usuarioDTO.enderecoDTO().logradouro() : user.get().getEndereco().getLogradouro());
+            endereco.setComplemento(usuarioDTO.enderecoDTO().complemento() != null ? usuarioDTO.enderecoDTO().complemento() : user.get().getEndereco().getComplemento());
+            endereco.setNumero(usuarioDTO.enderecoDTO().numero() != null ? usuarioDTO.enderecoDTO().numero() : user.get().getEndereco().getNumero());
+            endereco.setCidade(usuarioDTO.enderecoDTO().cidade() != null ? usuarioDTO.enderecoDTO().cidade() : user.get().getEndereco().getCidade());
+            endereco.setEstado(usuarioDTO.enderecoDTO().estado() != null ? usuarioDTO.enderecoDTO().estado() : user.get().getEndereco().getEstado());
             var usuario = new Usuario();
             usuario.setId(usuarioDTO.id());
             usuario.setName(usuarioDTO.name() != null ? usuarioDTO.name() : user.get().getName());

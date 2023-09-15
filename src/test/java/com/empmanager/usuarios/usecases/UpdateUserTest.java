@@ -1,11 +1,11 @@
 package com.empmanager.usuarios.usecases;
 
-import com.empmanager.exception.UserNotFoundException;
+import com.empmanager.dto.EnderecoDTO;
 import com.empmanager.dto.UsuarioDTO;
+import com.empmanager.exception.UserNotFoundException;
 import com.empmanager.repository.UserRepository;
 import com.empmanager.usecases.GetUser;
 import com.empmanager.usecases.UpdateUser;
-import com.empmanager.usuarios.domain.Endereco;
 import com.empmanager.usuarios.domain.Usuario;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -35,27 +35,18 @@ public class UpdateUserTest {
     @Test
     void shouldUpdateUsuario(){
         Long userId = 1L;
-        var usuarioDTO = new UsuarioDTO(
-                userId, "Jackson Bispo ",
-                "Desenvolvedor Java pleno",
-                new BigDecimal("14.000"),
-                "991556628",
-                "Av Ernesto Igel",
-                "307",
-                "bloco 3",
-                "SP", "SP");
-       var endereco = new Endereco( "Av Ernesto Igel", "307", "bloco 3", "SP", "SP");
-
-       var user = new Usuario(1L, "Jackson Bispo", "Desenvolvedor Java pleno", new BigDecimal("14.000"), "991556628",endereco);
-        when(getUser.execute(userId)).thenReturn(Optional.of(user));
+        var endereco = new EnderecoDTO("Av Ernesto Igel", "307", "bloco 3", "SP", "SP");
+        var userDTO = new UsuarioDTO(userId, "Jackson Bispo", "Desenvolvedor Java pleno", new BigDecimal("14.000"), "991556628",endereco);
+        var usuario = new Usuario(userDTO);
+        when(getUser.execute(userId)).thenReturn(Optional.of(usuario));
 
         when(userRepository.save(any(Usuario.class))).thenAnswer(invocation -> invocation.getArgument(0));
-        Usuario result = updateUser.execute(usuarioDTO);
+        Usuario result = updateUser.execute(userDTO);
 
         Assertions.assertNotNull(result);
 
         verify(userRepository).save(result);
-        Assertions.assertEquals("Jackson Bispo ", result.getName());
+        Assertions.assertEquals("Jackson Bispo", result.getName());
         Assertions.assertEquals("Desenvolvedor Java pleno", result.getDesignacao());
         Assertions.assertEquals(new BigDecimal("14.000"), result.getSalario());
         Assertions.assertEquals("991556628", result.getTelefone());
@@ -67,19 +58,13 @@ public class UpdateUserTest {
     @Test
     void shouldNotUpdateUsuario(){
         Long userId = 1L;
-        var usuarioDTO = new UsuarioDTO(
-                userId, "Jackson Bispo ",
-                "Desenvolvedor Java pleno",
-                new BigDecimal("14.000"),
-                "991556628",
-                "Av Ernesto Igel",
-                "307",
-                "bloco 3",
-                "SP", "SP");
+        var endereco = new EnderecoDTO("Av Ernesto Igel", "307", "bloco 3", "SP", "SP");
+        var userDTO = new UsuarioDTO(1L, "Jackson", "Desenvolvedor Java", new BigDecimal("14.000"), "991556628",endereco);
+        var usuario = new Usuario(userDTO);
 
         when(getUser.execute(userId)).thenThrow(UserNotFoundException.class);
 
-        Assertions.assertThrows(UserNotFoundException.class, () -> updateUser.execute(usuarioDTO));
+        Assertions.assertThrows(UserNotFoundException.class, () -> updateUser.execute(userDTO));
 
         verifyNoInteractions(userRepository);
 

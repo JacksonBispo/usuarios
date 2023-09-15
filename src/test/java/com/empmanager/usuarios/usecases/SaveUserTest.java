@@ -1,8 +1,9 @@
 package com.empmanager.usuarios.usecases;
 
+import com.empmanager.dto.EnderecoDTO;
+import com.empmanager.dto.UsuarioDTO;
 import com.empmanager.repository.UserRepository;
 import com.empmanager.usecases.SaveUser;
-import com.empmanager.usuarios.domain.Endereco;
 import com.empmanager.usuarios.domain.Usuario;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -10,15 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.math.BigDecimal;
 
@@ -36,9 +29,9 @@ public class SaveUserTest {
 
     @Test
     void shouldSaveNewUser(){
-
-        var endereco = new Endereco( "Av Ernesto Igel", "307", "bloco 3", "SP", "SP");
-        var usuario = new Usuario(null, "Jackson", "Desenvolvedor Java", new BigDecimal("14.000"), "991556628",endereco);
+        var endereco = new EnderecoDTO("Av Ernesto Igel", "307", "bloco 3", "SP", "SP");
+        var userDTO = new UsuarioDTO(null, "Jackson", "Desenvolvedor Java", new BigDecimal("14.000"), "991556628",endereco);
+        var usuario = new Usuario(userDTO);
         Mockito.when(userRepository.save(any())).thenReturn(usuario);
         var userSaved = saveUser.execute(usuario);
 
