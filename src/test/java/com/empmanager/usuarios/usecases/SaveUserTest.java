@@ -1,4 +1,4 @@
-package com.empmanager.usuarios;
+package com.empmanager.usuarios.usecases;
 
 import com.empmanager.repository.UserRepository;
 import com.empmanager.usecases.SaveUser;
