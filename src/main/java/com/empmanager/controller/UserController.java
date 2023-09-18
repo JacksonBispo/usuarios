@@ -3,13 +3,9 @@ package com.empmanager.controller;
 import com.empmanager.dto.InfoUsuarioDTO;
 import com.empmanager.dto.SaveUsuarioDTO;
 import com.empmanager.dto.UpdateUsuarioDTO;
-import com.empmanager.usecases.GetUser;
-import com.empmanager.usecases.ListUser;
-import com.empmanager.usecases.SaveUser;
-import com.empmanager.usecases.UpdateUser;
+import com.empmanager.usecases.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -29,7 +25,8 @@ public class UserController {
     private GetUser getUser;
     @Autowired
     private ListUser listUser;
-
+    @Autowired
+    private DeleteUser deleteUser;
 
 
     @PostMapping("/cadastrar")
@@ -61,6 +58,11 @@ public class UserController {
 
     }
 
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id){
+        deleteUser.execute(id);
+    }
+
     @GetMapping("/all")
     public List<InfoUsuarioDTO> getFuncionarios(){
 
@@ -68,7 +70,6 @@ public class UserController {
         .stream()
                 .map(InfoUsuarioDTO::new)
                 .collect(Collectors.toList());
-
         return users;
     }
 }

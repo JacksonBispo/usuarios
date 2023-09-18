@@ -1,9 +1,9 @@
 package com.empmanager.usecases;
 
-import com.empmanager.dto.UpdateUsuarioDTO;
-import com.empmanager.repository.UserRepository;
 import com.empmanager.domain.Endereco;
 import com.empmanager.domain.Usuario;
+import com.empmanager.dto.UpdateUsuarioDTO;
+import com.empmanager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

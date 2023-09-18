@@ -1,6 +1,5 @@
 package com.empmanager.domain;
 
-import com.empmanager.dto.EnderecoDTO;
 import com.empmanager.dto.SaveUsuarioDTO;
 import com.empmanager.dto.UpdateUsuarioDTO;
 import jakarta.persistence.*;
@@ -32,7 +31,7 @@ public class Usuario {
         this.designacao = usuarioDTO.designacao();
         this.salario = usuarioDTO.salario();
         this.telefone = usuarioDTO.telefone();
-        this.endereco = new Endereco(usuarioDTO.enderecoDTO());
+        this.endereco = new Endereco(usuarioDTO.endereco());
 
     }
 
@@ -44,6 +43,14 @@ public class Usuario {
         this.telefone = usuarioDTO.telefone();
         this.endereco = new Endereco(usuarioDTO.endereco());
 
+    }
+
+    public Usuario(String name, String designacao, BigDecimal salario, String telefone, Endereco endereco) {
+        this.name = name;
+        this.designacao = designacao;
+        this.salario = salario;
+        this.telefone = telefone;
+        this.endereco = endereco;
     }
 
     public void update (UpdateUsuarioDTO usuarioDTO){

@@ -1,8 +1,8 @@
 package com.empmanager.usecases;
 
+import com.empmanager.domain.Usuario;
 import com.empmanager.exception.UserNotFoundException;
 import com.empmanager.repository.UserRepository;
-import com.empmanager.domain.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

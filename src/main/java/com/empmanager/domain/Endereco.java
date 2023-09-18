@@ -19,6 +19,14 @@ public class Endereco {
     public Endereco() {
     }
 
+    public Endereco(String logradouro, String numero, String complemento, String cidade, String estado) {
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.cidade = cidade;
+        this.estado = estado;
+    }
+
     public Endereco(EnderecoDTO enderecoDTO){
         this.logradouro = enderecoDTO.logradouro();
         this.numero = enderecoDTO.numero();

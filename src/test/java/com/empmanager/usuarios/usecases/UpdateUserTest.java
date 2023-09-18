@@ -1,12 +1,12 @@
 package com.empmanager.usuarios.usecases;
 
+import com.empmanager.domain.Usuario;
 import com.empmanager.dto.EnderecoDTO;
 import com.empmanager.dto.UpdateUsuarioDTO;
 import com.empmanager.exception.UserNotFoundException;
 import com.empmanager.repository.UserRepository;
 import com.empmanager.usecases.GetUser;
 import com.empmanager.usecases.UpdateUser;
-import com.empmanager.domain.Usuario;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -42,7 +42,7 @@ public class UpdateUserTest {
         when(getUser.execute(userId)).thenReturn(Optional.of(usuario));
 
         when(userRepository.save(any(Usuario.class))).thenAnswer(invocation -> invocation.getArgument(0));
-        Usuario result = updateUser.execute(userDTO);
+        Usuario result = updateUser.execute(userId, userDTO);
 
         Assertions.assertNotNull(result);
 
@@ -65,7 +65,7 @@ public class UpdateUserTest {
         usuario.update(userDTO);
         when(getUser.execute(userId)).thenThrow(UserNotFoundException.class);
 
-        Assertions.assertThrows(UserNotFoundException.class, () -> updateUser.execute(userDTO));
+        Assertions.assertThrows(UserNotFoundException.class, () -> updateUser.execute(userId,userDTO));
 
         verifyNoInteractions(userRepository);
 

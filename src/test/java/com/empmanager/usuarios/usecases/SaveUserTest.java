@@ -1,10 +1,10 @@
 package com.empmanager.usuarios.usecases;
 
+import com.empmanager.domain.Usuario;
 import com.empmanager.dto.EnderecoDTO;
 import com.empmanager.dto.SaveUsuarioDTO;
 import com.empmanager.repository.UserRepository;
 import com.empmanager.usecases.SaveUser;
-import com.empmanager.domain.Usuario;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
