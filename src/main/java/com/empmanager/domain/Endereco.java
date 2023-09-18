@@ -1,11 +1,10 @@
-package com.empmanager.usuarios.domain;
+package com.empmanager.domain;
 
 import com.empmanager.dto.EnderecoDTO;
 import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class Endereco {
-
 
     private String logradouro;
 
@@ -27,6 +26,24 @@ public class Endereco {
         this.cidade = enderecoDTO.cidade();
         this.estado = enderecoDTO.estado();
 
+    }
+
+    public void updateAddress(EnderecoDTO enderecoDTO){
+        if(logradouro!=null) {
+            this.logradouro = enderecoDTO.logradouro();
+        }
+        if(numero!= null) {
+            this.numero = enderecoDTO.numero();
+        }
+        if (complemento!=null){
+            this.complemento = enderecoDTO.complemento();
+        }
+        if (cidade!=null) {
+            this.cidade = enderecoDTO.cidade();
+        }
+        if (estado!=null) {
+            this.estado = enderecoDTO.estado();
+        }
     }
 
 

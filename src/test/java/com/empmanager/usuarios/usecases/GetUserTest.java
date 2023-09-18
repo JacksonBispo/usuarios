@@ -1,11 +1,11 @@
 package com.empmanager.usuarios.usecases;
 
 import com.empmanager.dto.EnderecoDTO;
-import com.empmanager.dto.UsuarioDTO;
+import com.empmanager.dto.SaveUsuarioDTO;
 import com.empmanager.exception.UserNotFoundException;
 import com.empmanager.repository.UserRepository;
 import com.empmanager.usecases.GetUser;
-import com.empmanager.usuarios.domain.Usuario;
+import com.empmanager.domain.Usuario;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -32,7 +32,7 @@ public class GetUserTest {
     void shouldOneUserTest() {
         Long userId = 1L;
         var endereco = new EnderecoDTO("Av Ernesto Igel", "307", "bloco 3", "SP", "SP");
-        var userDTO = new UsuarioDTO(null, "Jackson", "Desenvolvedor Java", new BigDecimal("14.000"), "991556628",endereco);
+        var userDTO = new SaveUsuarioDTO( "Jackson", "Desenvolvedor Java", new BigDecimal("14.000"), "991556628",endereco);
         var usuario = new Usuario(userDTO);
 
         var mockUser = new Usuario(userDTO);

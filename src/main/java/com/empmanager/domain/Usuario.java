@@ -1,6 +1,8 @@
-package com.empmanager.usuarios.domain;
+package com.empmanager.domain;
 
-import com.empmanager.dto.UsuarioDTO;
+import com.empmanager.dto.EnderecoDTO;
+import com.empmanager.dto.SaveUsuarioDTO;
+import com.empmanager.dto.UpdateUsuarioDTO;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -25,11 +27,42 @@ public class Usuario {
 
 
     public Usuario(){}
-    public Usuario(UsuarioDTO usuarioDTO){
+    public Usuario(SaveUsuarioDTO usuarioDTO){
         this.name = usuarioDTO.name();
         this.designacao = usuarioDTO.designacao();
         this.salario = usuarioDTO.salario();
+        this.telefone = usuarioDTO.telefone();
         this.endereco = new Endereco(usuarioDTO.enderecoDTO());
+
+    }
+
+    public Usuario(UpdateUsuarioDTO usuarioDTO){
+        this.id = usuarioDTO.id();
+        this.name = usuarioDTO.name();
+        this.designacao = usuarioDTO.designacao();
+        this.salario = usuarioDTO.salario();
+        this.telefone = usuarioDTO.telefone();
+        this.endereco = new Endereco(usuarioDTO.endereco());
+
+    }
+
+    public void update (UpdateUsuarioDTO usuarioDTO){
+        if (usuarioDTO.name() != null){
+            this.name = usuarioDTO.name();
+        }
+        if (usuarioDTO.designacao()!= null){
+            this.designacao = usuarioDTO.designacao();
+        }
+        if (usuarioDTO.salario()!= null){
+            this.salario = usuarioDTO.salario();
+        }
+
+        if (usuarioDTO.telefone()!= null){
+            this.telefone = usuarioDTO.telefone();
+        }
+        if (usuarioDTO.endereco()!= null){
+            this.endereco.updateAddress(usuarioDTO.endereco());
+        }
 
     }
 

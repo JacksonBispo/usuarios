@@ -1,12 +1,12 @@
 package com.empmanager.usuarios.usecases;
 
 import com.empmanager.dto.EnderecoDTO;
-import com.empmanager.dto.UsuarioDTO;
+import com.empmanager.dto.UpdateUsuarioDTO;
 import com.empmanager.exception.UserNotFoundException;
 import com.empmanager.repository.UserRepository;
 import com.empmanager.usecases.GetUser;
 import com.empmanager.usecases.UpdateUser;
-import com.empmanager.usuarios.domain.Usuario;
+import com.empmanager.domain.Usuario;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -36,8 +36,9 @@ public class UpdateUserTest {
     void shouldUpdateUsuario(){
         Long userId = 1L;
         var endereco = new EnderecoDTO("Av Ernesto Igel", "307", "bloco 3", "SP", "SP");
-        var userDTO = new UsuarioDTO(userId, "Jackson Bispo", "Desenvolvedor Java pleno", new BigDecimal("14.000"), "991556628",endereco);
+        var userDTO = new UpdateUsuarioDTO(userId, "Jackson Bispo", "Desenvolvedor Java pleno", new BigDecimal("14.000"), "991556628",endereco);
         var usuario = new Usuario(userDTO);
+        usuario.update(userDTO);
         when(getUser.execute(userId)).thenReturn(Optional.of(usuario));
 
         when(userRepository.save(any(Usuario.class))).thenAnswer(invocation -> invocation.getArgument(0));
@@ -59,9 +60,9 @@ public class UpdateUserTest {
     void shouldNotUpdateUsuario(){
         Long userId = 1L;
         var endereco = new EnderecoDTO("Av Ernesto Igel", "307", "bloco 3", "SP", "SP");
-        var userDTO = new UsuarioDTO(1L, "Jackson", "Desenvolvedor Java", new BigDecimal("14.000"), "991556628",endereco);
+        var userDTO = new UpdateUsuarioDTO(1L, "Jackson", "Desenvolvedor Java", new BigDecimal("14.000"), "991556628",endereco);
         var usuario = new Usuario(userDTO);
-
+        usuario.update(userDTO);
         when(getUser.execute(userId)).thenThrow(UserNotFoundException.class);
 
         Assertions.assertThrows(UserNotFoundException.class, () -> updateUser.execute(userDTO));

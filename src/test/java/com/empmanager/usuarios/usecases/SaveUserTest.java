@@ -1,10 +1,10 @@
 package com.empmanager.usuarios.usecases;
 
 import com.empmanager.dto.EnderecoDTO;
-import com.empmanager.dto.UsuarioDTO;
+import com.empmanager.dto.SaveUsuarioDTO;
 import com.empmanager.repository.UserRepository;
 import com.empmanager.usecases.SaveUser;
-import com.empmanager.usuarios.domain.Usuario;
+import com.empmanager.domain.Usuario;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,10 +30,10 @@ public class SaveUserTest {
     @Test
     void shouldSaveNewUser(){
         var endereco = new EnderecoDTO("Av Ernesto Igel", "307", "bloco 3", "SP", "SP");
-        var userDTO = new UsuarioDTO(null, "Jackson", "Desenvolvedor Java", new BigDecimal("14.000"), "991556628",endereco);
+        var userDTO = new SaveUsuarioDTO("Jackson B", "Desenvolvedor JAVA",  new BigDecimal("14.000"), "991556628",endereco);
         var usuario = new Usuario(userDTO);
         Mockito.when(userRepository.save(any())).thenReturn(usuario);
-        var userSaved = saveUser.execute(usuario);
+        var userSaved = saveUser.execute(userDTO);
 
         Assertions.assertEquals(usuario.getId(), userSaved.getId());
         Assertions.assertEquals(usuario.getName(), userSaved.getName());

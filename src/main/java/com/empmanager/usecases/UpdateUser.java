@@ -1,9 +1,9 @@
 package com.empmanager.usecases;
 
-import com.empmanager.dto.UsuarioDTO;
+import com.empmanager.dto.UpdateUsuarioDTO;
 import com.empmanager.repository.UserRepository;
-import com.empmanager.usuarios.domain.Endereco;
-import com.empmanager.usuarios.domain.Usuario;
+import com.empmanager.domain.Endereco;
+import com.empmanager.domain.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,17 +16,17 @@ public class UpdateUser {
     @Autowired
     private GetUser getUser;
 
-    public Usuario execute(UsuarioDTO usuarioDTO) {
-        var user = getUser.execute(usuarioDTO.id());
+    public Usuario execute(Long id, UpdateUsuarioDTO usuarioDTO) {
+        var user = getUser.execute(id);
 
-            var endereco = new Endereco();
-            endereco.setLogradouro(usuarioDTO.enderecoDTO().logradouro() != null ? usuarioDTO.enderecoDTO().logradouro() : user.get().getEndereco().getLogradouro());
-            endereco.setComplemento(usuarioDTO.enderecoDTO().complemento() != null ? usuarioDTO.enderecoDTO().complemento() : user.get().getEndereco().getComplemento());
-            endereco.setNumero(usuarioDTO.enderecoDTO().numero() != null ? usuarioDTO.enderecoDTO().numero() : user.get().getEndereco().getNumero());
-            endereco.setCidade(usuarioDTO.enderecoDTO().cidade() != null ? usuarioDTO.enderecoDTO().cidade() : user.get().getEndereco().getCidade());
-            endereco.setEstado(usuarioDTO.enderecoDTO().estado() != null ? usuarioDTO.enderecoDTO().estado() : user.get().getEndereco().getEstado());
+            var endereco = new Endereco(usuarioDTO.endereco());
+            endereco.setLogradouro(usuarioDTO.endereco().logradouro() != null ? usuarioDTO.endereco().logradouro() : user.get().getEndereco().getLogradouro());
+            endereco.setComplemento(usuarioDTO.endereco().complemento() != null ? usuarioDTO.endereco().complemento() : user.get().getEndereco().getComplemento());
+            endereco.setNumero(usuarioDTO.endereco().numero() != null ? usuarioDTO.endereco().numero() : user.get().getEndereco().getNumero());
+            endereco.setCidade(usuarioDTO.endereco().cidade() != null ? usuarioDTO.endereco().cidade() : user.get().getEndereco().getCidade());
+            endereco.setEstado(usuarioDTO.endereco().estado() != null ? usuarioDTO.endereco().estado() : user.get().getEndereco().getEstado());
             var usuario = new Usuario();
-            usuario.setId(usuarioDTO.id());
+            usuario.setId(id);
             usuario.setName(usuarioDTO.name() != null ? usuarioDTO.name() : user.get().getName());
             usuario.setDesignacao(usuarioDTO.designacao() != null ? usuarioDTO.designacao() : user.get().getDesignacao());
             usuario.setSalario(usuarioDTO.salario() != null ? usuarioDTO.salario() : user.get().getSalario());
