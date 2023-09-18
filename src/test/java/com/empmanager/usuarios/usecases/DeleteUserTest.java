@@ -1,11 +1,11 @@
 package com.empmanager.usuarios.usecases;
 
+import com.empmanager.domain.Usuario;
 import com.empmanager.dto.EnderecoDTO;
 import com.empmanager.dto.SaveUsuarioDTO;
 import com.empmanager.repository.UserRepository;
 import com.empmanager.usecases.DeleteUser;
 import com.empmanager.usecases.GetUser;
-import com.empmanager.domain.Usuario;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -34,7 +34,7 @@ public class DeleteUserTest {
     void shouldDeleteUsuario() {
         Long userId = 1L;
         var endereco = new EnderecoDTO("Av Ernesto Igel", "307", "bloco 3", "SP", "SP");
-        var userDTO = new SaveUsuarioDTO("Jackson", "Desenvolvedor JAVA",  new BigDecimal("14.000"), "991556628",endereco);
+        var userDTO = new SaveUsuarioDTO("Jackson", "Desenvolvedor JAVA", new BigDecimal("14.000"), "991556628", endereco);
         var usuario = new Usuario(userDTO);
         when(getUser.execute(userId)).thenReturn(Optional.of(usuario));
 

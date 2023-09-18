@@ -1,6 +1,6 @@
 package com.empmanager.exception;
 
-public class UserNotFoundException extends RuntimeException{
+public class UserNotFoundException extends RuntimeException {
 
     public UserNotFoundException(String message, Exception ex) {
         super(message, ex);

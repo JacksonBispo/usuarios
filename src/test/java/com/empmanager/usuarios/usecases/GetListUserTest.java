@@ -31,7 +31,7 @@ public class GetListUserTest {
     void shouldListUserTest() {
         Long userId = 1L;
         var endereco = new EnderecoDTO("Av Ernesto Igel", "307", "bloco 3", "SP", "SP");
-        var userDTO = new SaveUsuarioDTO( "Jackson", "Desenvolvedor Java", new BigDecimal("14.000"), "991556628",endereco);
+        var userDTO = new SaveUsuarioDTO("Jackson", "Desenvolvedor Java", new BigDecimal("14.000"), "991556628", endereco);
         var usuario = new Usuario(userDTO);
 
         var mockUser = new Usuario(userDTO);

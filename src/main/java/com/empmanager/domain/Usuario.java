@@ -25,8 +25,10 @@ public class Usuario {
     private Endereco endereco;
 
 
-    public Usuario(){}
-    public Usuario(SaveUsuarioDTO usuarioDTO){
+    public Usuario() {
+    }
+
+    public Usuario(SaveUsuarioDTO usuarioDTO) {
         this.name = usuarioDTO.name();
         this.designacao = usuarioDTO.designacao();
         this.salario = usuarioDTO.salario();
@@ -35,7 +37,7 @@ public class Usuario {
 
     }
 
-    public Usuario(UpdateUsuarioDTO usuarioDTO){
+    public Usuario(UpdateUsuarioDTO usuarioDTO) {
         this.id = usuarioDTO.id();
         this.name = usuarioDTO.name();
         this.designacao = usuarioDTO.designacao();
@@ -53,21 +55,21 @@ public class Usuario {
         this.endereco = endereco;
     }
 
-    public void update (UpdateUsuarioDTO usuarioDTO){
-        if (usuarioDTO.name() != null){
+    public void update(UpdateUsuarioDTO usuarioDTO) {
+        if (usuarioDTO.name() != null) {
             this.name = usuarioDTO.name();
         }
-        if (usuarioDTO.designacao()!= null){
+        if (usuarioDTO.designacao() != null) {
             this.designacao = usuarioDTO.designacao();
         }
-        if (usuarioDTO.salario()!= null){
+        if (usuarioDTO.salario() != null) {
             this.salario = usuarioDTO.salario();
         }
 
-        if (usuarioDTO.telefone()!= null){
+        if (usuarioDTO.telefone() != null) {
             this.telefone = usuarioDTO.telefone();
         }
-        if (usuarioDTO.endereco()!= null){
+        if (usuarioDTO.endereco() != null) {
             this.endereco.updateAddress(usuarioDTO.endereco());
         }
 

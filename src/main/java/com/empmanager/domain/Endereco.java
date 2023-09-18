@@ -27,7 +27,7 @@ public class Endereco {
         this.estado = estado;
     }
 
-    public Endereco(EnderecoDTO enderecoDTO){
+    public Endereco(EnderecoDTO enderecoDTO) {
         this.logradouro = enderecoDTO.logradouro();
         this.numero = enderecoDTO.numero();
         this.complemento = enderecoDTO.complemento();
@@ -36,24 +36,23 @@ public class Endereco {
 
     }
 
-    public void updateAddress(EnderecoDTO enderecoDTO){
-        if(logradouro!=null) {
+    public void updateAddress(EnderecoDTO enderecoDTO) {
+        if (logradouro != null) {
             this.logradouro = enderecoDTO.logradouro();
         }
-        if(numero!= null) {
+        if (numero != null) {
             this.numero = enderecoDTO.numero();
         }
-        if (complemento!=null){
+        if (complemento != null) {
             this.complemento = enderecoDTO.complemento();
         }
-        if (cidade!=null) {
+        if (cidade != null) {
             this.cidade = enderecoDTO.cidade();
         }
-        if (estado!=null) {
+        if (estado != null) {
             this.estado = enderecoDTO.estado();
         }
     }
-
 
 
     public String getLogradouro() {

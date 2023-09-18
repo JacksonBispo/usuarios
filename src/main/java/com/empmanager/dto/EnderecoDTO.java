@@ -16,6 +16,6 @@ public record EnderecoDTO(
         @Length(min = 5, max = 50, message = "tamanho deve ser de no maximo 50 carateres e no minimo 50")
         String cidade,
         @NotBlank(message = "estado é obrigatorio")
-                @Length(max = 2)
+        @Length(max = 2)
         String estado) {
 }

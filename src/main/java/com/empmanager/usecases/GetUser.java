@@ -16,9 +16,9 @@ public class GetUser {
 
     public Optional<Usuario> execute(Long id) {
         var user = userRepository.findById(id);
-        if (user.isPresent()){
+        if (user.isPresent()) {
             return user;
-        }else{
+        } else {
             throw new UserNotFoundException("Usuario nao encontrado!");
         }
     }

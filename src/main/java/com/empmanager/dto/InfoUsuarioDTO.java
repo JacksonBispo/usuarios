@@ -20,7 +20,7 @@ public record InfoUsuarioDTO(
         Endereco endereco
 ) {
 
-        public InfoUsuarioDTO (Usuario usuario){
-                this(usuario.getName(), usuario.getDesignacao(), usuario.getSalario(), usuario.getTelefone(), usuario.getEndereco());
-        }
+    public InfoUsuarioDTO(Usuario usuario) {
+        this(usuario.getName(), usuario.getDesignacao(), usuario.getSalario(), usuario.getTelefone(), usuario.getEndereco());
+    }
 }

@@ -28,9 +28,9 @@ public class SaveUserTest {
     private UserRepository userRepository;
 
     @Test
-    void shouldSaveNewUser(){
+    void shouldSaveNewUser() {
         var endereco = new EnderecoDTO("Av Ernesto Igel", "307", "bloco 3", "SP", "SP");
-        var userDTO = new SaveUsuarioDTO("Jackson B", "Desenvolvedor JAVA",  new BigDecimal("14.000"), "991556628",endereco);
+        var userDTO = new SaveUsuarioDTO("Jackson B", "Desenvolvedor JAVA", new BigDecimal("14.000"), "991556628", endereco);
         var usuario = new Usuario(userDTO);
         Mockito.when(userRepository.save(any())).thenReturn(usuario);
         var userSaved = saveUser.execute(userDTO);

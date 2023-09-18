@@ -33,10 +33,10 @@ public class UpdateUserTest {
     private GetUser getUser;
 
     @Test
-    void shouldUpdateUsuario(){
+    void shouldUpdateUsuario() {
         Long userId = 1L;
         var endereco = new EnderecoDTO("Av Ernesto Igel", "307", "bloco 3", "SP", "SP");
-        var userDTO = new UpdateUsuarioDTO(userId, "Jackson Bispo", "Desenvolvedor Java pleno", new BigDecimal("14.000"), "991556628",endereco);
+        var userDTO = new UpdateUsuarioDTO(userId, "Jackson Bispo", "Desenvolvedor Java pleno", new BigDecimal("14.000"), "991556628", endereco);
         var usuario = new Usuario(userDTO);
         usuario.update(userDTO);
         when(getUser.execute(userId)).thenReturn(Optional.of(usuario));
@@ -57,15 +57,15 @@ public class UpdateUserTest {
     }
 
     @Test
-    void shouldNotUpdateUsuario(){
+    void shouldNotUpdateUsuario() {
         Long userId = 1L;
         var endereco = new EnderecoDTO("Av Ernesto Igel", "307", "bloco 3", "SP", "SP");
-        var userDTO = new UpdateUsuarioDTO(1L, "Jackson", "Desenvolvedor Java", new BigDecimal("14.000"), "991556628",endereco);
+        var userDTO = new UpdateUsuarioDTO(1L, "Jackson", "Desenvolvedor Java", new BigDecimal("14.000"), "991556628", endereco);
         var usuario = new Usuario(userDTO);
         usuario.update(userDTO);
         when(getUser.execute(userId)).thenThrow(UserNotFoundException.class);
 
-        Assertions.assertThrows(UserNotFoundException.class, () -> updateUser.execute(userId,userDTO));
+        Assertions.assertThrows(UserNotFoundException.class, () -> updateUser.execute(userId, userDTO));
 
         verifyNoInteractions(userRepository);
 

@@ -14,7 +14,7 @@ public class SaveUser {
     private UserRepository repository;
 
 
-    public Usuario execute(SaveUsuarioDTO usuario){
+    public Usuario execute(SaveUsuarioDTO usuario) {
         var user = new Usuario(usuario);
         return repository.save(user);
     }

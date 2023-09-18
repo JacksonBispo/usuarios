@@ -30,20 +30,20 @@ public class UserController {
 
 
     @PostMapping("/cadastrar")
-    public ResponseEntity cadastrar(@RequestBody @Valid SaveUsuarioDTO user, UriComponentsBuilder uriBuilder){
+    public ResponseEntity cadastrar(@RequestBody @Valid SaveUsuarioDTO user, UriComponentsBuilder uriBuilder) {
         var usuario = saveUser.execute(user);
         var uri = uriBuilder.path("/funcionarios/{id}").buildAndExpand(usuario.getId()).toUri();
         return ResponseEntity.created(uri).body(usuario);
     }
 
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity atualizar(@PathVariable Long id, @RequestBody @Valid UpdateUsuarioDTO user, UriComponentsBuilder uriBuilder){
-        var usuario = updateUser.execute(id,user);
+    public ResponseEntity atualizar(@PathVariable Long id, @RequestBody @Valid UpdateUsuarioDTO user, UriComponentsBuilder uriBuilder) {
+        var usuario = updateUser.execute(id, user);
         return ResponseEntity.ok(usuario);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<InfoUsuarioDTO> getFuncionarios(@PathVariable Long id){
+    public ResponseEntity<InfoUsuarioDTO> getFuncionarios(@PathVariable Long id) {
 
         var usuario = getUser.execute(id);
 
@@ -59,15 +59,15 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id){
+    public void delete(@PathVariable Long id) {
         deleteUser.execute(id);
     }
 
     @GetMapping("/all")
-    public List<InfoUsuarioDTO> getFuncionarios(){
+    public List<InfoUsuarioDTO> getFuncionarios() {
 
         var users = listUser.execute()
-        .stream()
+                .stream()
                 .map(InfoUsuarioDTO::new)
                 .collect(Collectors.toList());
         return users;

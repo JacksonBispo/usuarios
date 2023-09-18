@@ -32,7 +32,7 @@ public class GetUserTest {
     void shouldOneUserTest() {
         Long userId = 1L;
         var endereco = new EnderecoDTO("Av Ernesto Igel", "307", "bloco 3", "SP", "SP");
-        var userDTO = new SaveUsuarioDTO( "Jackson", "Desenvolvedor Java", new BigDecimal("14.000"), "991556628",endereco);
+        var userDTO = new SaveUsuarioDTO("Jackson", "Desenvolvedor Java", new BigDecimal("14.000"), "991556628", endereco);
 
         var mockUser = new Usuario(userDTO);
         mockUser.setId(userId);
